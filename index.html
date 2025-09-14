@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>imu <3</title>
+  <title>&lt;3 imu<3</title>
   <style>
     body, html {
       margin: 0;
       padding: 0;
       height: 100%;
-      background: #111;
+      background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -18,14 +18,14 @@
     }
 
     #heart {
-      font-size: 4rem;
+      font-size: 2.5rem;
       cursor: pointer;
       user-select: none;
       transition: transform 0.3s ease;
     }
 
     #heart:hover {
-      transform: scale(0.9);
+      transform: scale(1.1);
     }
 
     #video-container {
@@ -34,21 +34,22 @@
       width: 80vw;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 0 30px #e91e63;
     }
 
     video {
       width: 100%;
       height: auto;
       display: block;
+      object-fit: cover;
     }
   </style>
 </head>
 <body>
+
   <div id="heart">&lt;3</div>
 
   <div id="video-container">
-    <video id="video">
+    <video id="video" loop autoplay playsinline>
       <source src="https://raw.githubusercontent.com/4blocksdown/mmmh/main/video.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
@@ -65,5 +66,6 @@
       video.play();
     });
   </script>
+
 </body>
 </html>
