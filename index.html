@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>imu <3</title>
+<title><3</title>
 <style>
   body, html {
     margin: 0; padding: 0;
@@ -16,31 +16,36 @@
     font-family: Arial, sans-serif;
   }
   #heart {
-    font-size: 10rem;
+    font-size: 8rem;
     cursor: pointer;
     user-select: none;
     transition: transform 0.3s ease;
+    outline: none;
+    border: none;
+    background: none;
   }
   #heart:hover {
     transform: scale(1.2);
   }
   #video-container {
     display: none;
-    width: 80%;
-    max-width: 800px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
   }
   video {
     width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 0 30px #e91e63;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 </style>
 </head>
 <body>
-  <div id="heart">&hearts;</div>
+  <div id="heart">&lt;3</div>
   <div id="video-container">
-    <video id="video" controls>
+    <video id="video" autoplay muted playsinline>
       <source src="https://raw.githubusercontent.com/4blocksdown/mmmh/main/video.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
