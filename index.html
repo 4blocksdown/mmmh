@@ -1,66 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title><3</title>
-<style>
-  body, html {
-    margin: 0; padding: 0;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #111;
-    color: #fff;
-    font-family: Arial, sans-serif;
-  }
-  #heart {
-    font-size: 8rem;
-    cursor: pointer;
-    user-select: none;
-    transition: transform 0.3s ease;
-    outline: none;
-    border: none;
-    background: none;
-  }
-  #heart:hover {
-    transform: scale(1.2);
-  }
-  #video-container {
-    display: none;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-  }
-  video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>imu <3</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    #heart {
+      font-size: 4rem;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+
+    #heart:hover {
+      transform: scale(0.9);
+    }
+
+    #video-container {
+      display: none;
+      max-width: 800px;
+      width: 80vw;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 30px #e91e63;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <div id="heart">&lt;3</div>
+
   <div id="video-container">
-    <video id="video" autoplay muted playsinline>
+    <video id="video">
       <source src="https://raw.githubusercontent.com/4blocksdown/mmmh/main/video.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   </div>
 
-<script>
-  const heart = document.getElementById('heart');
-  const videoContainer = document.getElementById('video-container');
-  const video = document.getElementById('video');
+  <script>
+    const heart = document.getElementById('heart');
+    const videoContainer = document.getElementById('video-container');
+    const video = document.getElementById('video');
 
-  heart.addEventListener('click', () => {
-    heart.style.display = 'none';
-    videoContainer.style.display = 'block';
-    video.play();
-  });
-</script>
+    heart.addEventListener('click', () => {
+      heart.style.display = 'none';
+      videoContainer.style.display = 'block';
+      video.play();
+    });
+  </script>
 </body>
 </html>
