@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Heart Click Video</title>
+<style>
+  body, html {
+    margin: 0; padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  #heart {
+    font-size: 10rem;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.3s ease;
+  }
+  #heart:hover {
+    transform: scale(1.2);
+  }
+  #video-container {
+    display: none;
+    width: 80%;
+    max-width: 800px;
+  }
+  video {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 30px #e91e63;
+  }
+</style>
+</head>
+<body>
+  <div id="heart">&hearts;</div>
+  <div id="video-container">
+    <video id="video" controls>
+      <source src="https://raw.githubusercontent.com/yourusername/yourrepo/main/your-video.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+<script>
+  const heart = document.getElementById('heart');
+  const videoContainer = document.getElementById('video-container');
+  const video = document.getElementById('video');
+
+  heart.addEventListener('click', () => {
+    heart.style.display = 'none';
+    videoContainer.style.display = 'block';
+    video.play();
+  });
+</script>
+</body>
+</html>
