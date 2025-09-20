@@ -8,69 +8,120 @@
   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/4blocksdown/mmmh/main/icon1.png" />
   
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
+     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'VT323', monospace; }
+    html, body { width: 100%; height: 100%; background: #000; overflow: hidden; cursor: auto; }
+
+    .tv-c {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 480px;
+      aspect-ratio: 4 / 3;
+      transform: translate(-50%, -50%) perspective(800px) rotateX(12deg) rotateY(-6deg) rotateZ(-1deg);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+      border-radius: 8px;
+      overflow: hidden;
+      display: none;
+    }
+
+    .tv-s { width: 100%; height: 100%; position: relative; overflow: hidden; background: #000; }
+    .tv-s {
+      width: 110%; height: 110%;
+      object-fit: cover;
+      filter: brightness(0.9) contrast(1.1) saturate(1.2);
+    }
+
+    .scanlines {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(to bottom, rgba(0,0,0,0.15) 2px, transparent 2px);
+      mix-blend-mode: overlay;
+      animation: flicker 0.1s infinite;
+    }
+
+    .vhs-noise {
+      position: absolute;
+      inset: 0;
+      background: repeating-radial-gradient(circle, rgba(255,255,255,0.03), transparent 4px);
+      animation: noise 0.3s infinite;
+    }
+
+    @keyframes flicker { 0%,100%{opacity:.06;} 50%{opacity:.12;} }
+    @keyframes noise { 0%,100%{opacity:.02;} 25%,75%{opacity:.08;} 50%{opacity:.05;} }
+
+    .tv-frame {
+      position: absolute;
+      inset: 0;
+      border: 0px solid #222;
+      border-radius: 8px;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .click-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: #000;
       display: flex;
-      justify-content: center;
       align-items: center;
-      font-family: Arial, sans-serif;
-      color: white;
-    }
-
-    #heart {
-      font-size: 2.5rem;
+      justify-content: center;
+      flex-direction: column;
+      color: #ff0000;
+      font-size: 40px;
       cursor: pointer;
-      user-select: none;
-      transition: transform 0.3s ease;
+      z-index: 10;
+      text-align: center;
+      animation: pulse 1.5s infinite;
     }
 
-    #heart:hover {
-      transform: scale(1.1);
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.6; }
+      100% { opacity: 1; }
     }
 
-    #video-container {
-      display: none;
-      max-width: 800px;
-      width: 80vw;
-      border-radius: 12px;
-      overflow: hidden;
+    .arrow {
+      color: white;
+      font-size: 60px;
+      margin-top: 10px;
+      animation: bounce 1s infinite;
     }
 
-    video {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
   </style>
 </head>
 <body>
 
-  <div id="heart">&lt;3</div>
+  <div class="click-overlay" id="clickOverlay">
+    <3
+    <div class="arrow"></div>
+  </div>
 
-  <div id="video-container">
-    <video id="video" loop playsinline>
-      <source src="https://raw.githubusercontent.com/4blocksdown/mmmh/main/video7.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+  <div class="tv-c" id="tv">
+    <div class="tv-s">
+      <video id="video" loop playsinline>
+        <source src="https://raw.githubusercontent.com/4blocksdown/mmmh/main/video7.mp4" type="video/mp4">
+      </video>
+      <div class="scanlines"></div>
+      <div class="vhs-noise"></div>
+      <div class="tv-frame"></div>
+    </div>
   </div>
 
   <script>
-    const heart = document.getElementById('heart');
-    const videoContainer = document.getElementById('video-container');
-    const video = document.getElementById('video');
+    const clickOverlay = document.getElementById('clickOverlay');
+    const tv = document.getElementById('tv');
+    const vid = document.getElementById('bgvid');
 
-    heart.addEventListener('click', () => {
-      heart.style.display = 'none';
-      videoContainer.style.display = 'block';
-      video.play();
-    });
-
-    video.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
+    clickOverlay.addEventListener('click', () => {
+      clickOverlay.style.display = 'none';
+      tv.style.display = 'block';
+      vid.muted = false;
+      vid.play().catch(err => {
+        console.log('faield, blame gitrhub', err);
+      });
     });
   </script>
 
